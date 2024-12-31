@@ -77,6 +77,9 @@
 ​	类与接口：多实现，一个类可以实现多个接口
 
 ​	接口与接口：多继承
+
+
+
 	interface A{
 		void show1();
 	}
@@ -84,7 +87,7 @@
 		void show2();	
 		}
 	interface C extends A,B{
-    	void show3();
+		void show3();
 	}
 	class D implements C{
 		@Override
@@ -102,7 +105,29 @@
 	    	System.out.println("show3");
 		}
 
+
+
 2、一个接口继承多个接口，如果多个接口中存在方法签名冲突，则此时还不支持多继承，也不支持多实现
 
-​	
+
+
+3、一个类继承了父类又同时实现了接口，如果父类中和接口中有同名的方法，实现类会优先使用父类的
+
+	interface A2{
+		default void show(){
+	    	System.out.println("a2 show")
+		}
+	}
+	class Animal{
+		public void show(){
+	    	System.out.println("animal show");
+		}
+	}
+	class dog extends Animal implements A2{
+		public void go(){
+	    	show(); //父类的
+	    	super.show(); // 父类的
+	    	A2.super.show(); // A2接口
+		}
+	}
 
