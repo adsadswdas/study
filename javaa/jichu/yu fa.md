@@ -165,9 +165,7 @@
 #### 静态内部类
 
 	public class Outer {
-
-
-​	
+	
 	public static String name = "Outer";//静态
 	private int age = 10;//实例，属于外部类的对象。
 	
@@ -195,7 +193,39 @@
 
 **特点**：本质是一个子类，并会立即创建一个子类对象。
 
-用于更方便的创建一个子类对象。
+**作用：**用于更方便的创建一个子类对象。
+
+	public class test2 {
+	//需求，，学生老师都要参加游泳比赛
+	public static void main(String[] args) {
+	    Swim s = new Swim() {
+	        @Override
+	        public void swim() {
+	            System.out.println("学生在游泳");
+	        }
+	    };
+	    Swim t = new Swim() {
+	        @Override
+	        public void swim() {
+	            System.out.println("老师在游泳");
+	        }
+	    };
+	    swim(s);
+	    swim(t);
+	
+	}
+	//方法
+	public static void swim(Swim s){
+	    System.out.println("开始游泳");
+	    s.swim();
+	    System.out.println("结束游泳");
+	}
+	}
+	interface Swim{
+	void swim();
+	}
+
+**使用场景**
 
 
 
