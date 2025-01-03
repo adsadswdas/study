@@ -98,17 +98,107 @@
 
 ​	•在Java中，使用{}括起来的代码被称为代码块，根据其位置和声明的不同，可以分为局部代码块，构造代码块，静态代码块，同步代码块(多线程讲解)。
 
-​	•局部代码块 
+## 	•局部代码块 
 
 ​		•在方法中出现；限定变量生命周期，及早释放，提高内存利用率
 
-​	•构造代码块 
+## 	•构造代码块 
 
 ​		•在类中方法外出现；多个构造方法方法中相同的代码存放到一起，每次调用构造都执行，并且在构造方法前执行
 
-​	•静态代码块 在类中方法外出现，加了static修饰
+## 	•静态代码块 在类中方法外出现，**加了static修饰**
 
-​		•在类中方法外出现，并加上static修饰；用于给类进行初始化，在加载的时候就执行，并且值执行一次。
+​		•在类中方法外出现，并加上static修饰；用于给类进行初始化，在加载的时候就执行，并且值执行一次。加载类的静态资源的初始化 
+
+		public class codeDemo {
+			public static String name;
+			static {
+	    		name = "张三";
+	    		System.out.println("静态代码块执行了");
+			}
+		public static void main(String[] args) {
+	    	System.out.println("main方法执行了");
+		}
+		}
+
+## 	实例代码块
+
+​		每次创建对象前，执行实例代码块，并在构造器前执行。
+
+​		初始化对象的实例资源
+
+	public class codeDemo2 {
+		private String name;
+		private String[] dir = new String[4];
+	{
+	    // 实例代码快
+	    System.out.println("实例代码块");
+	    name = "add";
+	    dir[0] = "a";
+	    
+	}
+	
+	    public static void main(String[] args) {
+	        System.out.println("main方法");
+	        new codeDemo2();
+	    }
+	}
+
+
+
+# 内部类
+
+一个类定义在另一个类内部；
+
+#### 成员内部类
+
+//无static修饰，
+
+//外部类名.内部类名 对象名 = new 外部类名().new 内部类名();
+
+##### //成员内部类访问外部类成员的特点
+
+//1、**成员内部类中可以直接访问外部类的静态成员，也可以直接访问外部类的实例成员**
+
+//2、成员内部类的实例方法中，可以直接拿得到当前寄生的外部类对象：外部类名字.this
+
+#### 静态内部类
+
+	public class Outer {
+
+
+​	
+	public static String name = "Outer";//静态
+	private int age = 10;//实例，属于外部类的对象。
+	
+	public static class Inner {//静态内部类，属于外部类本身持有
+	    public void show() {
+	        System.out.println(name);//静态内部类可以直接访问外部类的静态成员
+	        // System.out.println(age);//静态内部类不能直接访问外部类的非静态成员
+	        System.out.println("show");
+	    }
+	
+	}
+	}
+
+//外部类名.内部类名 对象名 = new 外部类.内部类(...);
+
+
+
+#### 匿名内部类
+
+不需要为这个类声明名字，默认有个隐藏的名字
+
+	new 类或接口（参数值）{
+		类体（一般是方法重写）
+	}
+
+**特点**：本质是一个子类，并会立即创建一个子类对象。
+
+用于更方便的创建一个子类对象。
+
+
+
 
 
 
