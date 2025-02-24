@@ -32,5 +32,67 @@ String代码字符串，他的对象可以封装字符串数据，并提供了�
 	    String str8 = new String("abc");
 	    String str9 = new String("abc");
 	    System.out.println(str8 == str9); //false
+	 System.out.println("=====================================");
+	
+	        //调用字符串数据的方法
+	        String okLoginName = "admin";
+	        System.out.println("请输入用户名:");
+	        Scanner sc = new Scanner(System.in);
+	        String inputLoginName = sc.next();
+	
+	        if (okLoginName.equals(inputLoginName)) {
+	            System.out.println("登录成功");
+	        } else {
+	            System.out.println("登录失败");
+	        }
+	
+	        System.out.println("=====================================");
+	
+	        System.out.println("使用手机号登录:");
+	        String phone = sc.next();
+	        System.out.println("系统显示一下手机号码:" + phone.replace(phone.substring(3, 7), "****"));
 	}
 	}
+
+
+
+
+
+### String生成验证码
+
+
+
+	public class test1 {
+		public static void main(String[] args) {
+	    //生成验证码的程序，每位可能是数字、大小写字母、使用string做
+	
+	    	String code = generateCode(6);
+	    	System.out.println("验证码:" + code);
+	
+		}
+	public static String generateCode(int length){
+	
+	    //1、定义一个字符串，保存所有的字符
+	    //2、随机生成一个下标，通过下标获取字符，拼接到一起
+	    //3、重复2的步骤，生成指定长度的字符串
+	    //4、返回生成的字符串
+	
+	    String str = 	"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	    String code = "";
+	    for (int i = 0; i < length; i++) {
+	        int index = (int) (Math.random() * str.length()); // Math.random() 生成一个[0,1)之间的随机数
+	        code += str.charAt(index); //charAt() 获取指定下标的字符
+	    }
+	    return code;
+	}
+	}
+
+
+
+
+
+String random //需要转换为char数组
+
+for(char ch: random.toCharArray){
+
+}
